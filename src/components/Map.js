@@ -516,13 +516,11 @@ class SimpleMap extends Component {
         { text: "Adam Arnold Kitchen", lat: -36.853955, lng: 174.745924 },
         { text: "Royaltea", lat: -36.847864, lng: 174.767232 },
         { text: "The Crew Club", lat: -36.84218, lng: 174.763717 }
-
-        /*
-
-
-
-*/
-      ]
+      ],
+      myLocation: {
+        lat: "",
+        lng: ""
+      }
     };
   }
 
@@ -533,6 +531,38 @@ class SimpleMap extends Component {
     },
     zoom: 14
   };
+
+  componentDidMount() {
+    // Enable viewing of current location
+
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    function success(pos) {
+      var crd = pos.coords;
+
+      // this.setState({
+      //   myLocation: {
+      //     lat: crd.latitude,
+      //     lng: crd.longitude
+      //   }
+      // });
+
+      console.log("Your current position is:");
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }
 
   render() {
     const { restaurants } = this.state;

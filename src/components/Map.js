@@ -558,7 +558,7 @@ class SimpleMap extends Component {
   };
 
   render() {
-    const { restaurants } = this.state;
+    const { restaurants, myLocation } = this.state;
 
     return (
       // Important! Always set the container height explicitly
@@ -574,6 +574,8 @@ class SimpleMap extends Component {
               <i className="fa fa-cloud" />
             </AnyReactComponent>
           ))}
+
+          <MyLocationComponent lat={myLocation.lat} lng={myLocation.lng} />
         </GoogleMapReact>
       </div>
     );

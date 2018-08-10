@@ -526,17 +526,16 @@ class SimpleMap extends Component {
       myLocation: {
         lat: 0,
         lng: 0
-      }
+      },
+      center: {
+        lat: -36.8523379,
+        lng: 174.7691077
+      },
+      zoom: 14
     };
   }
 
-  static defaultProps = {
-    center: {
-      lat: -36.8523379,
-      lng: 174.7691077
-    },
-    zoom: 14
-  };
+  // static defaultProps = {};
 
   componentDidMount() {
     this.getGeoLocation();
@@ -552,7 +551,10 @@ class SimpleMap extends Component {
             lng: position.coords.longitude
           }
         });
-        console.log(this.state);
+        // center = {
+        //   lat: position.coords.latitude,
+        //   lng: position.coords.longitude
+        // };
       });
     }
   };
@@ -565,8 +567,8 @@ class SimpleMap extends Component {
       <div style={{ height: "90vh", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyCAA0cjcjXsjZBymMjQuQyZR6hJ0SUf7hI" }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
+          defaultCenter={this.state.center}
+          defaultZoom={this.state.zoom}
         >
           {restaurants.map(rest => (
             <AnyReactComponent lat={rest.lat} lng={rest.lng} text={rest.text}>

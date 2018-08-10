@@ -10,6 +10,12 @@ const AnyReactComponent = ({ text }) => (
   </div>
 );
 
+const MyLocationComponent = () => (
+  <div>
+    <i className="fa fa-car" style={{ color: "green" }} />
+  </div>
+);
+
 class SimpleMap extends Component {
   constructor(props) {
     super(props);
@@ -534,40 +540,6 @@ class SimpleMap extends Component {
 
   componentDidMount() {
     this.getGeoLocation();
-
-    // Enable viewing of current location
-
-    // var crd = null;
-
-    // var options = {
-    //   enableHighAccuracy: true,
-    //   timeout: 5000,
-    //   maximumAge: 0
-    // };
-
-    // function success(pos) {
-    //   crd = pos.coords;
-
-    //   console.log("Your current position is:");
-    //   console.log(`Latitude : ${crd.latitude}`);
-    //   console.log(`Longitude: ${crd.longitude}`);
-    //   console.log(`More or less ${crd.accuracy} meters.`);
-
-    //   if (crd != null && crd.latitude != null && crd.longitude != null) {
-    //     this.setState({
-    //       myLocation: {
-    //         lat: crd.latitude,
-    //         lng: crd.longitude
-    //       }
-    //     });
-    //   }
-    // }
-
-    // function error(err) {
-    //   console.warn(`ERROR(${err.code}): ${err.message}`);
-    // }
-
-    // navigator.geolocation.getCurrentPosition(success, error, options);
   }
 
   getGeoLocation = () => {

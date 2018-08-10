@@ -549,25 +549,28 @@ class SimpleMap extends Component {
           myLocation: {
             lat: position.coords.latitude,
             lng: position.coords.longitude
+          },
+          center: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
           }
         });
-        // center = {
-        //   lat: position.coords.latitude,
-        //   lng: position.coords.longitude
-        // };
+
+        console.log(this.state);
       });
     }
   };
 
   render() {
-    const { restaurants, myLocation } = this.state;
+    const { restaurants, myLocation, center } = this.state;
 
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: "90vh", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyCAA0cjcjXsjZBymMjQuQyZR6hJ0SUf7hI" }}
-          defaultCenter={this.state.center}
+          // defaultCenter={this.state.center}
+          center={center}
           defaultZoom={this.state.zoom}
         >
           {restaurants.map(rest => (

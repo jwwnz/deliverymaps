@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const iconComp = <div />;
+
+const AnyReactComponent = ({ text }) => (
+  <div>
+    <i className="fa fa-map-marker" style={{ color: "green" }} />
+    {text}
+  </div>
+);
 
 class SimpleMap extends Component {
+  constructor(props) {}
+
   static defaultProps = {
     center: {
       lat: -36.8523379,
@@ -25,7 +34,10 @@ class SimpleMap extends Component {
             lat={-36.8523379}
             lng={174.7691077}
             text={"Kreyser Avrora"}
-          />
+          >
+            {" "}
+            <i className="fa fa-cloud" />
+          </AnyReactComponent>
         </GoogleMapReact>
       </div>
     );

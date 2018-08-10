@@ -518,8 +518,8 @@ class SimpleMap extends Component {
         { text: "The Crew Club", lat: -36.84218, lng: 174.763717 }
       ],
       myLocation: {
-        lat: "",
-        lng: ""
+        lat: 0,
+        lng: 0
       }
     };
   }
@@ -533,36 +533,57 @@ class SimpleMap extends Component {
   };
 
   componentDidMount() {
+    this.getGeoLocation();
+
     // Enable viewing of current location
 
-    var options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
+    // var crd = null;
 
-    function success(pos) {
-      var crd = pos.coords;
+    // var options = {
+    //   enableHighAccuracy: true,
+    //   timeout: 5000,
+    //   maximumAge: 0
+    // };
 
-      // this.setState({
-      //   myLocation: {
-      //     lat: crd.latitude,
-      //     lng: crd.longitude
-      //   }
-      // });
+    // function success(pos) {
+    //   crd = pos.coords;
 
-      console.log("Your current position is:");
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`);
-    }
+    //   console.log("Your current position is:");
+    //   console.log(`Latitude : ${crd.latitude}`);
+    //   console.log(`Longitude: ${crd.longitude}`);
+    //   console.log(`More or less ${crd.accuracy} meters.`);
 
-    function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
+    //   if (crd != null && crd.latitude != null && crd.longitude != null) {
+    //     this.setState({
+    //       myLocation: {
+    //         lat: crd.latitude,
+    //         lng: crd.longitude
+    //       }
+    //     });
+    //   }
+    // }
 
-    navigator.geolocation.getCurrentPosition(success, error, options);
+    // function error(err) {
+    //   console.warn(`ERROR(${err.code}): ${err.message}`);
+    // }
+
+    // navigator.geolocation.getCurrentPosition(success, error, options);
   }
+
+  getGeoLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        console.log(position.coords);
+        this.setState({
+          myLocation: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
+        });
+        console.log(this.state);
+      });
+    }
+  };
 
   render() {
     const { restaurants } = this.state;

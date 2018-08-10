@@ -11,7 +11,24 @@ const AnyReactComponent = ({ text }) => (
 );
 
 class SimpleMap extends Component {
-  constructor(props) {}
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      restaurants: [
+        {
+          lat: -36.8523379,
+          lng: 174.7691077,
+          text: "Auckland Uni"
+        },
+        {
+          lat: -36.8533379,
+          lng: 174.7691077,
+          text: "Auckland Uni"
+        }
+      ]
+    };
+  }
 
   static defaultProps = {
     center: {
@@ -22,6 +39,8 @@ class SimpleMap extends Component {
   };
 
   render() {
+    const { restaurants } = this.state;
+
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: "100vh", width: "100%" }}>
@@ -30,14 +49,16 @@ class SimpleMap extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
-          <AnyReactComponent
-            lat={-36.8523379}
-            lng={174.7691077}
-            text={"Kreyser Avrora"}
-          >
-            {" "}
-            <i className="fa fa-cloud" />
-          </AnyReactComponent>
+          {restaurants.map(rest => (
+            <AnyReactComponent
+              lat={rest.lat}
+              lng={rest.lng}
+              text={"Kreyser Avrora"}
+            >
+              {" "}
+              <i className="fa fa-cloud" />
+            </AnyReactComponent>
+          ))}
         </GoogleMapReact>
       </div>
     );

@@ -580,7 +580,12 @@ class SimpleMap extends Component {
           defaultZoom={this.state.zoom}
         >
           {restaurants.map(rest => (
-            <AnyReactComponent lat={rest.lat} lng={rest.lng} text={rest.text}>
+            <AnyReactComponent
+              key={rest.text}
+              lat={rest.lat}
+              lng={rest.lng}
+              text={rest.text}
+            >
               {" "}
               <i className="fa fa-cloud" />
             </AnyReactComponent>

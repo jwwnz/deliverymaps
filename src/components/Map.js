@@ -538,7 +538,9 @@ class SimpleMap extends Component {
   // static defaultProps = {};
 
   componentDidMount() {
-    this.getGeoLocation();
+    setInterval(() => {
+      this.getGeoLocation();
+    }, 3000);
   }
 
   getGeoLocation = () => {

@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 
 import RestaurantComponent from "./Restaurant";
+import MyLocationComponent from "./MyLocation";
 
-const MyLocationComponent = ({}) => (
-  <div>
-    <i className="fa fa-car" style={{ color: "green" }} />
-  </div>
-);
+// const MyLocationComponent = ({}) => (
+//   <div>
+//     <i className="fa fa-car" style={{ color: "green" }} />
+//   </div>
+// );
 
 class SimpleMap extends Component {
   constructor(props) {

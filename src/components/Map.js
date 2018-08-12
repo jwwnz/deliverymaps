@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 
-const iconComp = <div />;
-
-const RestaurantComponent = ({ text }) => (
-  <div>
-    <i className="fa fa-map-marker" style={{ color: "red" }} />
-    {text}
-  </div>
-);
+import RestaurantComponent from "./Restaurant";
 
 const MyLocationComponent = ({}) => (
   <div>

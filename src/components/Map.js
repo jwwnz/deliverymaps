@@ -10,9 +10,10 @@ const AnyReactComponent = ({ text }) => (
   </div>
 );
 
-const MyLocationComponent = () => (
+const MyLocationComponent = ({ text }) => (
   <div>
     <i className="fa fa-car" style={{ color: "green" }} />
+    {text}
   </div>
 );
 
@@ -531,7 +532,8 @@ class SimpleMap extends Component {
         lat: -36.8523379,
         lng: 174.7691077
       },
-      zoom: 14
+      zoom: 14,
+      textTo: "hello"
     };
   }
 
@@ -539,29 +541,32 @@ class SimpleMap extends Component {
 
   componentDidMount() {
     setInterval(() => {
-      this.getGeoLocation();
+      getGeoLocation();
+      console.log("hello test fired");
+      console.log(this.state.textTo);
     }, 3000);
-  }
 
-  getGeoLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        console.log(position.coords);
-        this.setState({
-          myLocation: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          },
-          center: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          }
+    const getGeoLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          console.log(position.coords);
+          this.setState({
+            myLocation: {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            },
+            center: {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            },
+            textTo: "changed!"
+          });
+
+          console.log(this.state);
         });
-
-        console.log(this.state);
-      });
-    }
-  };
+      }
+    };
+  }
 
   render() {
     const { restaurants, myLocation, center } = this.state;
@@ -582,7 +587,11 @@ class SimpleMap extends Component {
             </AnyReactComponent>
           ))}
 
-          <MyLocationComponent lat={myLocation.lat} lng={myLocation.lng} />
+          <MyLocationComponent
+            lat={myLocation.lat}
+            lng={myLocation.lng}
+            text={"hello"}
+          />
         </GoogleMapReact>
       </div>
     );

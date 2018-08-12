@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 
 const iconComp = <div />;
 
-const AnyReactComponent = ({ text }) => (
+const RestaurantComponent = ({ text }) => (
   <div>
     <i className="fa fa-map-marker" style={{ color: "red" }} />
     {text}
@@ -580,7 +580,7 @@ class SimpleMap extends Component {
           defaultZoom={this.state.zoom}
         >
           {restaurants.map(rest => (
-            <AnyReactComponent
+            <RestaurantComponent
               key={rest.text}
               lat={rest.lat}
               lng={rest.lng}
@@ -588,7 +588,7 @@ class SimpleMap extends Component {
             >
               {" "}
               <i className="fa fa-cloud" />
-            </AnyReactComponent>
+            </RestaurantComponent>
           ))}
 
           <MyLocationComponent lat={myLocation.lat} lng={myLocation.lng} />

@@ -7,7 +7,7 @@ import MyLocationComponent from "./MyLocation";
 // Data of Restaurant locations in Auckland city.
 import { dataArray } from "../data";
 
-class SimpleMap extends Component {
+class DeliveryMap extends Component {
   constructor(props) {
     super(props);
 
@@ -25,11 +25,14 @@ class SimpleMap extends Component {
     };
   }
 
+  // Component lifecycle on mount
   componentDidMount() {
+    // Set 3 second interval to trigger getGeoLocation method
     this.interval = setInterval(() => {
       getGeoLocation();
     }, 3000);
 
+    // Method where current gps position identified from navigator and then this position is used to set the myLocation state.
     const getGeoLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -49,16 +52,19 @@ class SimpleMap extends Component {
   }
 
   render() {
+    // Destructuring used for better accessibility of specific parts of state.
     const { restaurants, myLocation, center } = this.state;
     return (
-      // Important! Always set the container height explicitly
+      // Rationale of styles: Containing div set to full width of screen, but 90vh to enable seeing welcome bar.
       <div style={{ height: "90vh", width: "100%" }}>
+        {/* // Rendering of JSX map component */}
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyCAA0cjcjXsjZBymMjQuQyZR6hJ0SUf7hI" }}
           // defaultCenter={this.state.center}
           center={center}
           defaultZoom={this.state.zoom}
         >
+          {/* For every restaurant in restaurants in state iterate and create a RestaurantComponent */}
           {restaurants.map(rest => (
             <RestaurantComponent
               key={rest.text}
@@ -71,6 +77,7 @@ class SimpleMap extends Component {
             </RestaurantComponent>
           ))}
 
+          {/* Rendering myLocation */}
           <MyLocationComponent lat={myLocation.lat} lng={myLocation.lng} />
         </GoogleMapReact>
       </div>
@@ -78,4 +85,4 @@ class SimpleMap extends Component {
   }
 }
 
-export default SimpleMap;
+export default DeliveryMap;

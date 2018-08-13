@@ -3,6 +3,7 @@ import GoogleMapReact from "google-map-react";
 
 import RestaurantComponent from "./Restaurant";
 import MyLocationComponent from "./MyLocation";
+import { bootstrapKey } from "../authentication";
 
 // Data of Restaurant locations in Auckland city.
 import { dataArray } from "../data";
@@ -59,7 +60,7 @@ class DeliveryMap extends Component {
       <div style={{ height: "90vh", width: "100%" }}>
         {/* // Rendering of JSX map component */}
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyCAA0cjcjXsjZBymMjQuQyZR6hJ0SUf7hI" }}
+          bootstrapURLKeys={{ key: bootstrapKey }}
           // defaultCenter={this.state.center}
           center={center}
           defaultZoom={this.state.zoom}

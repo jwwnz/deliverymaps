@@ -18,6 +18,8 @@ This simple map application attempts to solve this problem by:
 1. Displaying all delivery restaurants in the Auckland city area on a visual map.
 2. Display your current location on the map to see how far you are from these restaurants.
 
+## TECH Stack: REACT and GOOGLE MAPS
+
 ## Future improvements:
 
 There are a number of further functionality that is being considered, including:
